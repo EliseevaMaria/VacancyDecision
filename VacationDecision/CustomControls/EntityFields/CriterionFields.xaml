@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="VacationDecision.CustomControls.EntityFields.CriterionFields"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:enumeration="clr-namespace:Model.Enumeration;assembly=Model">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="CriterionType" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enumeration:CriterionType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="CriterionOptimalValue" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enumeration:CriterionOptimalValue" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="CriterionScaleType" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enumeration:CriterionScaleType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" MinWidth="100" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Range:" Grid.Column="0" Grid.Row="0" Margin="7" />
+        <TextBox Name="Range" Text="{Binding Path=Range, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                 Grid.Column="1" Grid.Row="0" Margin="5" MaxWidth="150"
+                 PreviewTextInput="NumericValidation"/>
+        
+        <TextBlock Text="Weight:" Grid.Column="0" Grid.Row="1" Margin="7" />
+        <TextBox Name="Weight" Text="{Binding Path=Weight, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                 Grid.Column="1" Grid.Row="1" Margin="5" MaxWidth="150"
+                 PreviewTextInput="NumericValidation"/>
+
+        <TextBlock Text="Type:" Grid.Column="0" Grid.Row="2" Margin="7" />
+        <ComboBox Name="Type" ItemsSource="{Binding Source={StaticResource CriterionType}}"
+                  SelectedItem="{Binding Path=Type}"
+                  Grid.Column="1" Grid.Row="2" Margin="5" MaxWidth="150" />
+
+        <TextBlock Text="Optimal value:" Grid.Column="0" Grid.Row="3" Margin="7" />
+        <ComboBox Name="OptimalValue" ItemsSource="{Binding Source={StaticResource CriterionOptimalValue}}"
+                  SelectedItem="{Binding Path=OptimalValue}"
+                  Grid.Column="1" Grid.Row="3" Margin="5" MaxWidth="150" />
+
+        <TextBlock Text="Unit:" Grid.Column="0" Grid.Row="4" Margin="7" />
+        <TextBox Name="Unit" Text="{Binding Path=Unit, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                 Grid.Column="1" Grid.Row="4" Margin="5" MaxWidth="150" />
+
+        <TextBlock Text="Scale type:" Grid.Column="0" Grid.Row="5" Margin="7" />
+        <ComboBox Name="ScaleType" ItemsSource="{Binding Source={StaticResource CriterionScaleType}}"
+                  SelectedItem="{Binding Path=ScaleType}"
+                  Grid.Column="1" Grid.Row="5" Margin="5" MaxWidth="150" />
+
+        <TextBlock Text="Name:" Grid.Column="0" Grid.Row="6" Margin="7" />
+        <TextBox Name="Name" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                 Grid.Column="1" Grid.Row="6" Margin="5" MaxWidth="150" />
+    </Grid>
+</UserControl>

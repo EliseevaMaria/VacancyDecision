@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="VacationDecision.Tabs.Experts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:customControls="clr-namespace:VacationDecision.CustomControls"
+             xmlns:entityfields="clr-namespace:VacationDecision.CustomControls.EntityFields"
+             MinHeight="300" MaxHeight="500" Width="Auto">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <entityfields:ExpertFields DataContext="{Binding Path=ExpertFieldsViewModel}" />
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+            <Button Name="Filter" Content="Filter" Width="65" Margin="2" HorizontalAlignment="Left" Click="Filter_Click" />
+            <Button Name="ClearFilter" Content="Clear filter" Width="65" Margin="2" HorizontalAlignment="Left" Click="ClearFilter_Click"
+                    IsEnabled="{Binding Path=ClearFilterButtonEnabled, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+        </StackPanel>
+
+        <customControls:EntityDataGrid Grid.ColumnSpan="2" Grid.Row="2" DataContext="{Binding Path=GridControlViewModel}" />
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right">
+            <Button Name="Create" Content="Create" Width="65" Margin="2" Click="Create_Click" />
+            <Button Name="Update" Content="Update" Width="65" Margin="2" Click="Update_Click"
+                        IsEnabled="{Binding Path=IsRecordSelected, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+            <Button Name="Delete" Content="Delete" Width="65" Margin="2" Click="Delete_Click"
+                        IsEnabled="{Binding Path=IsRecordSelected, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

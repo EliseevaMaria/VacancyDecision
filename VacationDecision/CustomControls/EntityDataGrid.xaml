@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="VacationDecision.CustomControls.EntityDataGrid"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StackPanel>
+        <DataGrid Name="DataGrid" 
+                  ItemsSource="{Binding Path=RecordList, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                  SelectedItem="{Binding Path=SelectedRecord, Mode=OneWayToSource}"
+                  SelectionMode="Single" SelectionChanged="DataGrid_SelectionChanged"
+                  AutoGenerateColumns="True" 
+                  AutoGeneratingColumn="DataGrid_AutoGeneratingColumn"
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False"
+                  IsReadOnly="True"
+                  VerticalScrollBarVisibility="Auto"
+                  Height="150"
+                  Margin="10" />
+    </StackPanel>
+</UserControl>

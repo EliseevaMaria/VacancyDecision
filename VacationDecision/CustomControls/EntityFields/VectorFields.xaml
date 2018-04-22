@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="VacationDecision.CustomControls.EntityFields.VectorFields"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" MinWidth="100" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Mark:" Grid.Column="0" Grid.Row="0" Margin="7" />
+        <ComboBox Name="Mark" DataContext="{Binding Path=AvailableMarks}"
+                  ItemsSource="{Binding}"
+                  SelectedItem="{Binding Path=Mark}"
+                  Grid.Column="1" Grid.Row="0" Margin="5" MaxWidth="150" />
+
+        <TextBlock Text="Alternative:" Grid.Column="0" Grid.Row="1" Margin="7" />
+        <ComboBox Name="Alternative" ItemsSource="{Binding Path=AvailableAlternatives}"
+                  SelectedItem="{Binding Path=Alternative}"
+                  Grid.Column="1" Grid.Row="1" Margin="5" MaxWidth="150" />
+    </Grid>
+</UserControl>
