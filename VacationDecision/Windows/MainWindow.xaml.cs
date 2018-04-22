@@ -39,13 +39,13 @@ namespace VacationDecision
                 case "Criteria":
                     break;
                 case "Marks":
-                    var marksTab = selectedTab.Content as Marks;
+                    var marksTab = selectedTab.Content as MarkEntityTab;
                     var marksTabViewModel = marksTab.DataContext as MarksTabViewModel;
                     var markFieldsViewModel = marksTabViewModel.MarkFieldsViewModel;
                     markFieldsViewModel.RefreshComboboxLists();
                     break;
                 case "Vector":
-                    var vectorsTab = selectedTab.Content as Vectors;
+                    var vectorsTab = selectedTab.Content as VectorEntityTab;
                     var vectorsTabViewModel = vectorsTab.DataContext as VectorsTabViewModel;
                     var vectorFieldsViewModel = vectorsTabViewModel.VectorFieldsViewModel;
                     vectorFieldsViewModel.RefreshComboboxLists();

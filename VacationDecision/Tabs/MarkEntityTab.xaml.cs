@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Windows.Controls;
-using Model.Entity;
-using VacationDecision.Windows.CreateEditEntity;
 using ViewModel.Tabs;
-using ViewModel.Windows.CreateEditEntity;
 
 namespace VacationDecision.Tabs
 {
     /// <summary>
-    /// Interaction logic for Experts.xaml
+    /// Interaction logic for MarkEntityTab.xaml
     /// </summary>
-    public partial class Experts : UserControl
+    public partial class MarkEntityTab : UserControl
     {
+        public MarkEntityTab()
+        {
+            InitializeComponent();
+        }
+
         private void ClearFilter_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.viewModel.ClearFilter();
@@ -27,17 +29,12 @@ namespace VacationDecision.Tabs
             this.viewModel.Delete();
         }
 
-        public Experts()
-        {
-            InitializeComponent();
-        }
-
         private void Filter_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.viewModel.Filter();
         }
 
-        private ExpertsTabViewModel viewModel => this.DataContext as ExpertsTabViewModel;
+        private MarksTabViewModel viewModel => this.DataContext as MarksTabViewModel;
 
         private void Update_Click(object sender, System.Windows.RoutedEventArgs e)
         {

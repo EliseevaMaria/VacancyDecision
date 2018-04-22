@@ -6,19 +6,19 @@
         ResizeMode="NoResize">
     <TabControl Name="EntityTabControl" SelectionChanged="TabControl_SelectionChanged">
         <TabItem Header="Experts">
-            <tabs:Experts DataContext="{Binding Path=Experts}" Margin="0" VerticalAlignment="Top" />
+            <tabs:ExpertEntityTab DataContext="{Binding Path=Experts}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
         <TabItem Header="Alternatives">
-            <tabs:Alternatives DataContext="{Binding Path=Alternatives}" Margin="0" VerticalAlignment="Top" />
+            <tabs:AlternativeEntityTab DataContext="{Binding Path=Alternatives}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
         <TabItem Header="Criteria">
-            <tabs:Criteria DataContext="{Binding Path=Criteria}" Margin="0" VerticalAlignment="Top" />
+            <tabs:CriterionEntityTab DataContext="{Binding Path=Criteria}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
         <TabItem Header="Marks">
-            <tabs:Marks DataContext="{Binding Path=Marks}" Margin="0" VerticalAlignment="Top" />
+            <tabs:MarkEntityTab DataContext="{Binding Path=Marks}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
         <TabItem Header="Vector">
-            <tabs:Vectors DataContext="{Binding Path=Vectors}" Margin="0" VerticalAlignment="Top"  />
+            <tabs:VectorEntityTab DataContext="{Binding Path=Vectors}" Margin="0" VerticalAlignment="Top"  />
         </TabItem>
     </TabControl>
 </Window>

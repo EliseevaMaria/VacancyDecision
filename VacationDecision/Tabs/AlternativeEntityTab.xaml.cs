@@ -5,11 +5,11 @@ using ViewModel.Tabs;
 namespace VacationDecision.Tabs
 {
     /// <summary>
-    /// Interaction logic for Criteria.xaml
+    /// Interaction logic for AlternativeEntityTab.xaml
     /// </summary>
-    public partial class Criteria : UserControl
+    public partial class AlternativeEntityTab : UserControl
     {
-        public Criteria()
+        public AlternativeEntityTab()
         {
             InitializeComponent();
         }
@@ -34,7 +34,7 @@ namespace VacationDecision.Tabs
             this.viewModel.Filter();
         }
 
-        private CriteriaTabViewModel viewModel => this.DataContext as CriteriaTabViewModel;
+        private AlternativesTabViewModel viewModel => this.DataContext as AlternativesTabViewModel;
 
         private void Update_Click(object sender, System.Windows.RoutedEventArgs e)
         {

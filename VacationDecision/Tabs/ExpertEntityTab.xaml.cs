@@ -5,15 +5,10 @@ using ViewModel.Tabs;
 namespace VacationDecision.Tabs
 {
     /// <summary>
-    /// Interaction logic for Marks.xaml
+    /// Interaction logic for ExpertEntityTab.xaml
     /// </summary>
-    public partial class Marks : UserControl
+    public partial class ExpertEntityTab : UserControl
     {
-        public Marks()
-        {
-            InitializeComponent();
-        }
-
         private void ClearFilter_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.viewModel.ClearFilter();
@@ -29,12 +24,17 @@ namespace VacationDecision.Tabs
             this.viewModel.Delete();
         }
 
+        public ExpertEntityTab()
+        {
+            InitializeComponent();
+        }
+
         private void Filter_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.viewModel.Filter();
         }
 
-        private MarksTabViewModel viewModel => this.DataContext as MarksTabViewModel;
+        private ExpertsTabViewModel viewModel => this.DataContext as ExpertsTabViewModel;
 
         private void Update_Click(object sender, System.Windows.RoutedEventArgs e)
         {

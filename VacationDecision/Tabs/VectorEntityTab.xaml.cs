@@ -5,9 +5,9 @@ using ViewModel.Tabs;
 namespace VacationDecision.Tabs
 {
     /// <summary>
-    /// Interaction logic for Vectors.xaml
+    /// Interaction logic for VectorEntityTab.xaml
     /// </summary>
-    public partial class Vectors : UserControl
+    public partial class VectorEntityTab : UserControl
     {
         private void ClearFilter_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -36,7 +36,7 @@ namespace VacationDecision.Tabs
             this.viewModel.UpdateRecord();
         }
 
-        public Vectors()
+        public VectorEntityTab()
         {
             InitializeComponent();
         }

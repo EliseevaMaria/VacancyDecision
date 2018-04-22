@@ -75,20 +75,20 @@
     </Compile>
     <Compile Include="InteractionService\MainViewService.cs" />
     <Compile Include="InteractionService\EntityTabViewService.cs" />
-    <Compile Include="Tabs\Alternatives.xaml.cs">
-      <DependentUpon>Alternatives.xaml</DependentUpon>
+    <Compile Include="Tabs\AlternativeEntityTab.xaml.cs">
+      <DependentUpon>AlternativeEntityTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tabs\Criteria.xaml.cs">
-      <DependentUpon>Criteria.xaml</DependentUpon>
+    <Compile Include="Tabs\CriterionEntityTab.xaml.cs">
+      <DependentUpon>CriterionEntityTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tabs\Experts.xaml.cs">
-      <DependentUpon>Experts.xaml</DependentUpon>
+    <Compile Include="Tabs\ExpertEntityTab.xaml.cs">
+      <DependentUpon>ExpertEntityTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tabs\Marks.xaml.cs">
-      <DependentUpon>Marks.xaml</DependentUpon>
+    <Compile Include="Tabs\MarkEntityTab.xaml.cs">
+      <DependentUpon>MarkEntityTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tabs\Vectors.xaml.cs">
-      <DependentUpon>Vectors.xaml</DependentUpon>
+    <Compile Include="Tabs\VectorEntityTab.xaml.cs">
+      <DependentUpon>VectorEntityTab.xaml</DependentUpon>
     </Compile>
     <Page Include="CustomControls\EntityDataGrid.xaml">
       <SubType>Designer</SubType>
@@ -161,23 +161,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Tabs\Alternatives.xaml">
+    <Page Include="Tabs\AlternativeEntityTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Tabs\Criteria.xaml">
+    <Page Include="Tabs\CriterionEntityTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Tabs\Experts.xaml">
+    <Page Include="Tabs\ExpertEntityTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Tabs\Marks.xaml">
+    <Page Include="Tabs\MarkEntityTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Tabs\Vectors.xaml">
+    <Page Include="Tabs\VectorEntityTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
