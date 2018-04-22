@@ -6,19 +6,22 @@
         ResizeMode="NoResize">
     <TabControl Name="EntityTabControl" SelectionChanged="TabControl_SelectionChanged">
         <TabItem Header="Experts">
-            <tabs:ExpertEntityTab DataContext="{Binding Path=Experts}" Margin="0" VerticalAlignment="Top" />
+            <tabs:ExpertEntityTab Height="460" DataContext="{Binding Path=Experts}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
         <TabItem Header="Alternatives">
-            <tabs:AlternativeEntityTab DataContext="{Binding Path=Alternatives}" Margin="0" VerticalAlignment="Top" />
+            <tabs:AlternativeEntityTab Height="460" DataContext="{Binding Path=Alternatives}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
         <TabItem Header="Criteria">
-            <tabs:CriterionEntityTab DataContext="{Binding Path=Criteria}" Margin="0" VerticalAlignment="Top" />
+            <tabs:CriterionEntityTab Height="460" DataContext="{Binding Path=Criteria}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
         <TabItem Header="Marks">
-            <tabs:MarkEntityTab DataContext="{Binding Path=Marks}" Margin="0" VerticalAlignment="Top" />
+            <tabs:MarkEntityTab Height="460" DataContext="{Binding Path=Marks}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
         <TabItem Header="Vector">
-            <tabs:VectorEntityTab DataContext="{Binding Path=Vectors}" Margin="0" VerticalAlignment="Top"  />
+            <tabs:VectorEntityTab Height="460" DataContext="{Binding Path=Vectors}" Margin="0" VerticalAlignment="Top" />
+        </TabItem>
+        <TabItem Header="Compare">
+            <tabs:ComparisonTab Height="460" DataContext="{Binding Path=Vectors}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
     </TabControl>
 </Window>

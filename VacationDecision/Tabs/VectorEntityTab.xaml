@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:customcontrols="clr-namespace:VacationDecision.CustomControls"
              xmlns:entityfields="clr-namespace:VacationDecision.CustomControls.EntityFields"
-             MinHeight="300" MaxHeight="500" Width="Auto">
+             Width="Auto">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>

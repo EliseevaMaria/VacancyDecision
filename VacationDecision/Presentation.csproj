@@ -55,9 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CustomControls\EntityDataGrid.xaml.cs">
-      <DependentUpon>EntityDataGrid.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="CustomControls\EntityDataGrid.cs" />
     <Compile Include="CustomControls\EntityFields\AlternativeFields.xaml.cs">
       <DependentUpon>AlternativeFields.xaml</DependentUpon>
     </Compile>
@@ -87,13 +85,12 @@
     <Compile Include="Tabs\MarkEntityTab.xaml.cs">
       <DependentUpon>MarkEntityTab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tabs\ComparisonTab.xaml.cs">
+      <DependentUpon>ComparisonTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tabs\VectorEntityTab.xaml.cs">
       <DependentUpon>VectorEntityTab.xaml</DependentUpon>
     </Compile>
-    <Page Include="CustomControls\EntityDataGrid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CustomControls\EntityFields\AlternativeFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +110,10 @@
     <Page Include="CustomControls\EntityFields\ExpertFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tabs\ComparisonTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\CreateEditEntity\CreateEditAlternative.xaml">
       <Generator>MSBuild:Compile</Generator>
