@@ -21,6 +21,26 @@ namespace Database.Repository
             return result;
         }
 
+        public List<Mark> GetByAlternative(Alternative alternative)
+        {
+            string sql = $@"SELECT * FROM Mark
+                            INNER JOIN Criterion ON Criterion.CriterionId = Mark.CriterionId
+                            INNER JOIN Vector ON Vector.MarkId = Mark.MarkId
+                            INNER JOIN Alternative ON Alternative.AlternativeId = Vector.AlternativeId
+                            WHERE Alternative.AlternativeId = {alternative.Id}";
+
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionString))
+            {
+                var result = connection.Query<Mark, Criterion, Vector, Alternative, Mark>(sql, (mark, criterion, vector, altern) =>
+                {
+                    mark.Criterion = criterion;
+                    return mark;
+                }, splitOn: "CriterionId, VectorId, AlternativeId").ToList();
+
+                return result;
+            }
+        }
+
         protected override string GetFieldsForInsertion()
         {
             return "Name, CriterionId, Rank, QuantitativeValue, NormalizedValue";
@@ -58,12 +78,6 @@ namespace Database.Repository
         {
             var criterionRepositpry = new CriterionRepository();
             return criterionRepositpry.GetRecords();
-            //string sql = $"SELECT * FROM Criterion";
-
-            //using (var connection = new SqlConnection(ConfigurationManager.ConnectionString))
-            //{
-            //    return connection.Query<Criterion>(sql).ToList();
-            //}
         }
     }
 }

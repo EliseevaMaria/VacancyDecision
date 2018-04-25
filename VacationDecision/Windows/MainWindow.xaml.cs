@@ -50,6 +50,11 @@ namespace VacationDecision
                     var vectorFieldsViewModel = vectorsTabViewModel.VectorFieldsViewModel;
                     vectorFieldsViewModel.RefreshComboboxLists();
                     break;
+                case "Compare":
+                    var comparisonTab = selectedTab.Content as ComparisonTab;
+                    var comparisonTabViewModel = comparisonTab.DataContext as ComparisonTabViewModel;
+                    comparisonTabViewModel.RefreshAlternatives();
+                    break;
             }
         }
     }

@@ -16,6 +16,9 @@ namespace VacationDecision.InteractionService
                 case ViewService.ServiceId.ShowErrorServiceId:
                     MessageBox.Show(parameter.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return true;
+                case ViewService.ServiceId.ShowInformationServiceId:
+                    MessageBox.Show(parameter.ToString(), "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return true;
                 case ViewService.ServiceId.ShowWarningServiceId:
                     MessageBox.Show(parameter.ToString(), "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return true;

@@ -26,6 +26,8 @@ namespace ViewModel
 
             public const string OpenVectorEditWindowServiceId = nameof(ServiceId.OpenVectorEditWindowServiceId);
 
+            public const string ShowInformationServiceId = nameof(ServiceId.ShowInformationServiceId);
+
             public const string ShowWarningServiceId = nameof(ServiceId.ShowWarningServiceId);
 
             public const string ShowErrorServiceId = nameof(ServiceId.ShowErrorServiceId);
