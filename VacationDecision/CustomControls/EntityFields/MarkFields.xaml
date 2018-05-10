@@ -17,8 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Criterion:" Grid.Column="0" Grid.Row="0" Margin="7" />
-        <ComboBox Name="Criterion" DataContext="{Binding Path=AvailableCriteria}"
-                  ItemsSource="{Binding}"
+        <ComboBox Name="Criterion" ItemsSource="{Binding Path=AvailableCriteria}"
                   SelectedItem="{Binding Path=Criterion}"
                   DisplayMemberPath="Name"
                   Grid.Column="1" Grid.Row="0" Margin="5" MaxWidth="150" >

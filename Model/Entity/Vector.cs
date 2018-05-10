@@ -12,12 +12,6 @@ namespace Model.Entity
 
         public override int Id => this.VectorId;
 
-        public Mark Mark
-        {
-            get;
-            set;
-        }
-
         public Alternative Alternative
         {
             get;
@@ -25,6 +19,12 @@ namespace Model.Entity
         }
 
         public string Criterion
+        {
+            get;
+            set;
+        }
+
+        public Mark Mark
         {
             get;
             set;

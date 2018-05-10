@@ -12,8 +12,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Mark:" Grid.Column="0" Grid.Row="0" Margin="7" />
-        <ComboBox Name="Mark" DataContext="{Binding Path=AvailableMarks}"
-                  ItemsSource="{Binding}"
+        <ComboBox Name="Mark" ItemsSource="{Binding Path=AvailableMarks}"
                   SelectedItem="{Binding Path=Mark}"
                   Grid.Column="1" Grid.Row="0" Margin="5" MaxWidth="150" />
 
