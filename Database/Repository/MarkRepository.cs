@@ -41,6 +41,26 @@ namespace Database.Repository
             }
         }
 
+        public List<Mark> GetByCriterion(Criterion criterion)
+        {
+            string sql = $@"SELECT * FROM Mark
+                            INNER JOIN Criterion ON Criterion.CriterionId = Mark.CriterionId
+                            INNER JOIN Vector ON Vector.MarkId = Mark.MarkId
+                            INNER JOIN Alternative ON Alternative.AlternativeId = Vector.AlternativeId
+                            WHERE Criterion.CriterionId = {criterion.Id}";
+
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionString))
+            {
+                var result = connection.Query<Mark, Criterion, Vector, Alternative, Mark>(sql, (mark, crit, vector, altern) =>
+                {
+                    mark.Criterion = crit;
+                    return mark;
+                }, splitOn: "CriterionId, VectorId, AlternativeId").ToList();
+
+                return result;
+            }
+        }
+
         protected override string GetFieldsForInsertion()
         {
             return "Name, CriterionId, Rank, QuantitativeValue, NormalizedValue";

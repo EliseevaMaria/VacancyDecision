@@ -13,6 +13,7 @@ namespace ViewModel.Tabs
         public override void ClearFilter()
         {
             this.VectorFieldsViewModel.Alternative = null;
+            this.VectorFieldsViewModel.Criterion = null;
             this.VectorFieldsViewModel.Mark = null;
 
             this.GridControlViewModel.RefreshRecordList();
@@ -25,6 +26,10 @@ namespace ViewModel.Tabs
             if (this.VectorFieldsViewModel.Alternative != null)
                 where += $" AND Vector.{nameof(this.VectorFieldsViewModel.Alternative)}Id = {this.VectorFieldsViewModel.Alternative.Id}";
 
+            if (this.VectorFieldsViewModel.Criterion != null)
+                where += $@" AND Vector.{nameof(this.VectorFieldsViewModel.Mark)}Id IN 
+                            (SELECT MarkId FROM Mark WHERE Mark.CriterionId = {this.VectorFieldsViewModel.Criterion.Id})";
+
             if (this.VectorFieldsViewModel.Mark != null)
                 where += $" AND Vector.{nameof(this.VectorFieldsViewModel.Mark)}Id = {this.VectorFieldsViewModel.Mark.Id}";
 
@@ -34,6 +39,7 @@ namespace ViewModel.Tabs
         protected override void RefreshClearFilterButtonEnabled(object sender, PropertyChangedEventArgs e)
         {
             this.ClearFilterButtonEnabled = this.VectorFieldsViewModel.Alternative != null
+                                            || this.VectorFieldsViewModel.Criterion != null
                                             || this.VectorFieldsViewModel.Mark != null;
         }
 

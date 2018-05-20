@@ -24,11 +24,41 @@ namespace ViewModel.CustomControls.EntityFields
             }
         }
 
+        Criterion criterion;
+        public Criterion Criterion
+        {
+            get
+            {
+                return this.criterion;
+            }
+            set
+            {
+                if (this.criterion == value)
+                    return;
+
+                this.criterion = value;
+                this.OnPropertyChanged(nameof(this.Criterion));
+
+                if (this.criterion == null)
+                    return;
+
+                var criterionRepo = new MarkRepository();
+                this.availableMarks = criterionRepo.GetByCriterion(value);
+                this.OnPropertyChanged(nameof(this.AvailableMarks));
+            }
+        }
+
         private List<Alternative> availableAlternatives;
-        public List<Alternative> AvailableAlternatives => this.repository.GetAlternatives();
+        public List<Alternative> AvailableAlternatives => this.availableAlternatives ?? 
+            (this.availableAlternatives = this.repository.GetAlternatives());
+
+        private List<Criterion> availableCriteria;
+        public List<Criterion> AvailableCriteria => this.availableCriteria ?? 
+            (this.availableCriteria = this.repository.GetCriteria());
 
         private List<Mark> availableMarks;
-        public List<Mark> AvailableMarks => this.repository.GetMarks();
+        public List<Mark> AvailableMarks => this.availableMarks ?? 
+            (this.availableMarks = this.repository.GetMarks());
 
         Mark mark;
         public Mark Mark
@@ -51,6 +81,10 @@ namespace ViewModel.CustomControls.EntityFields
         {
             this.availableAlternatives = this.repository.GetAlternatives();
             this.OnPropertyChanged(nameof(this.AvailableAlternatives));
+
+            this.availableCriteria = this.repository.GetCriteria();
+            this.OnPropertyChanged(nameof(this.AvailableCriteria));
+
             this.availableMarks = this.repository.GetMarks();
             this.OnPropertyChanged(nameof(this.AvailableMarks));
         }

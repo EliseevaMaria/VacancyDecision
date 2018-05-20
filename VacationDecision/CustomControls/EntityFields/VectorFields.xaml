@@ -5,20 +5,29 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" MinWidth="100" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Mark:" Grid.Column="0" Grid.Row="0" Margin="7" />
-        <ComboBox Name="Mark" ItemsSource="{Binding Path=AvailableMarks}"
-                  SelectedItem="{Binding Path=Mark}"
-                  Grid.Column="1" Grid.Row="0" Margin="5" MaxWidth="150" />
-
-        <TextBlock Text="Alternative:" Grid.Column="0" Grid.Row="1" Margin="7" />
+        <TextBlock Text="Alternative:" Grid.Column="0" Grid.Row="0" Margin="7" />
         <ComboBox Name="Alternative" ItemsSource="{Binding Path=AvailableAlternatives}"
                   SelectedItem="{Binding Path=Alternative}"
+                  DisplayMemberPath="Name"
+                  Grid.Column="1" Grid.Row="0" Margin="5" MaxWidth="150" />
+
+        <TextBlock Text="Criterion:" Grid.Column="0" Grid.Row="1" Margin="7" />
+        <ComboBox Name="Criterion" ItemsSource="{Binding Path=AvailableCriteria}"
+                  SelectedItem="{Binding Path=Criterion}"
+                  DisplayMemberPath="Name"
                   Grid.Column="1" Grid.Row="1" Margin="5" MaxWidth="150" />
+
+        <TextBlock Text="Mark:" Grid.Column="0" Grid.Row="2" Margin="7" />
+        <ComboBox Name="Mark" ItemsSource="{Binding Path=AvailableMarks}"
+                  SelectedItem="{Binding Path=Mark}"
+                  DisplayMemberPath="Name"
+                  Grid.Column="1" Grid.Row="2" Margin="5" MaxWidth="150" />
     </Grid>
 </UserControl>

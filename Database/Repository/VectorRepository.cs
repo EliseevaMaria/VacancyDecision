@@ -24,6 +24,12 @@ namespace Database.Repository
             return result;
         }
 
+        public List<Criterion> GetCriteria()
+        {
+            var criterionRepository = new CriterionRepository();
+            return criterionRepository.GetRecords();
+        }
+
         protected override string GetFieldsForInsertion()
         {
             return "Vector.MarkId, Vector.AlternativeId";
@@ -40,24 +46,12 @@ namespace Database.Repository
         {
             var markRepository = new MarkRepository();
             return markRepository.GetRecords();
-            //string sql = "SELECT * FROM Mark";
-
-            //using (var connection = new SqlConnection(ConfigurationManager.ConnectionString))
-            //{
-            //    return connection.Query<Mark>(sql).ToList();
-            //}
         }
 
         public List<Alternative> GetAlternatives()
         {
             var alternativeRepository = new AlternativeRepository();
             return alternativeRepository.GetRecords();
-            //string sql = "SELECT * FROM Alternative";
-
-            //using (var connection = new SqlConnection(ConfigurationManager.ConnectionString))
-            //{
-            //    return connection.Query<Alternative>(sql).ToList();
-            //}
         }
 
         protected override string GetFieldsForUpdating()
