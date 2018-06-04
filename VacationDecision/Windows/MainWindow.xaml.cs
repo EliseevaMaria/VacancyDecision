@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using VacationDecision.InteractionService;
 using VacationDecision.Tabs;
 using ViewModel;
-using ViewModel.CustomControls.EntityFields;
 using ViewModel.Tabs;
 
 namespace VacationDecision
@@ -53,8 +52,13 @@ namespace VacationDecision
                 case "Compare":
                     var comparisonTab = selectedTab.Content as ComparisonTab;
                     var comparisonTabViewModel = comparisonTab.DataContext as ComparisonTabViewModel;
-                    comparisonTabViewModel.RefreshAlternatives();
                     break;
+                case "Collective compare":
+                    var collectiveComparisonTab = selectedTab.Content as CollectiveComparisonTab;
+                    var collectiveComparisonTabViewModel = collectiveComparisonTab.DataContext as CollectiveComparisonTabViewModel;
+                    break;
+                default:
+                    throw new Exception();
             }
         }
     }

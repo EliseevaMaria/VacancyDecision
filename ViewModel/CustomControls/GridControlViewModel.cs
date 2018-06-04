@@ -62,8 +62,11 @@ namespace ViewModel.CustomControls
 
                 this.selectedRecord = value;
                 this.OnPropertyChanged(nameof(this.SelectedRecord));
+                this.SelectedRecordChanged.Invoke(this, null);
             }
         }
+
+        public event EventHandler SelectedRecordChanged;
 
         public void UpdateRecord(T entity)
         {

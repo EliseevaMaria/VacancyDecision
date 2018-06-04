@@ -77,6 +77,9 @@
     <Compile Include="Tabs\AlternativeEntityTab.xaml.cs">
       <DependentUpon>AlternativeEntityTab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tabs\CollectiveComparisonTab.xaml.cs">
+      <DependentUpon>CollectiveComparisonTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tabs\CriterionEntityTab.xaml.cs">
       <DependentUpon>CriterionEntityTab.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
     <Page Include="CustomControls\EntityFields\ExpertFields.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tabs\CollectiveComparisonTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Tabs\ComparisonTab.xaml">
       <Generator>MSBuild:Compile</Generator>

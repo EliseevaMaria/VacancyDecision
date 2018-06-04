@@ -11,6 +11,12 @@ namespace ViewModel
             get;
         }
 
+        public CollectiveComparisonTabViewModel CollectiveComparisonTabViewModel
+        {
+            set;
+            get;
+        }
+
         public ComparisonTabViewModel ComparisonTabViewModel
         {
             set;
@@ -43,6 +49,7 @@ namespace ViewModel
             this.MarksViewModel = new MarksTabViewModel(entityTabViewService);
             this.VectorsViewModel = new VectorsTabViewModel(entityTabViewService);
             this.ComparisonTabViewModel = new ComparisonTabViewModel(entityTabViewService);
+            this.CollectiveComparisonTabViewModel = new CollectiveComparisonTabViewModel(entityTabViewService);
         }
 
         public VectorsTabViewModel VectorsViewModel

@@ -48,7 +48,9 @@
     <Compile Include="CustomControls\EntityFields\MarkFieldsViewModel.cs" />
     <Compile Include="CustomControls\GridControlViewModel.cs" />
     <Compile Include="CustomControls\EntityFields\EntityFieldsViewModel.cs" />
+    <Compile Include="Tabs\CollectiveComparisonTabViewModel.cs" />
     <Compile Include="Tabs\ComparisonTabViewModel.cs" />
+    <Compile Include="Tabs\ExpertComparisonViewModel.cs" />
     <Compile Include="ViewService.cs" />
     <Compile Include="Tabs\BaseEntityTabViewModel.cs" />
     <Compile Include="CustomControls\EntityFields\ExpertFieldsViewModel.cs" />

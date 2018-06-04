@@ -23,5 +23,8 @@
         <TabItem Header="Compare">
             <tabs:ComparisonTab Height="460" DataContext="{Binding Path=ComparisonTabViewModel}" Margin="0" VerticalAlignment="Top" />
         </TabItem>
+        <TabItem Header="Collective compare">
+            <tabs:CollectiveComparisonTab Height="460" DataContext="{Binding Path=CollectiveComparisonTabViewModel}" Margin="0" VerticalAlignment="Top" />
+        </TabItem>
     </TabControl>
 </Window>

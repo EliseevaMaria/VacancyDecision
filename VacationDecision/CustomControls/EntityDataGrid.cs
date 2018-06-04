@@ -96,6 +96,8 @@ namespace VacationDecision.CustomControls
                     var vector = item as Model.Entity.Vector;
                     (this.DataContext as GridControlViewModel<Model.Entity.Vector>).SelectedRecord = vector;
                     break;
+                default:
+                    throw new Exception();
             }
 
             base.OnSelectionChanged(e);
