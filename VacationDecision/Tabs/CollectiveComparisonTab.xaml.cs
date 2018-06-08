@@ -45,9 +45,9 @@ namespace VacationDecision.Tabs
             this.viewModel.SelectedExpertComparisonViewModel.MakeChoice(alternative);
         }
 
-        private void ContinueComparison_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.viewModel.SelectedExpertComparisonViewModel.ContinueComparison();
+            this.viewModel.RefreshAll();
         }
     }
 }

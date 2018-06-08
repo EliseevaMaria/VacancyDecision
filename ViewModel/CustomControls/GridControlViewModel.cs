@@ -57,12 +57,12 @@ namespace ViewModel.CustomControls
             }
             set
             {
-                if (this.selectedRecord == value)
+                if (value == null || this.selectedRecord == value)
                     return;
 
                 this.selectedRecord = value;
                 this.OnPropertyChanged(nameof(this.SelectedRecord));
-                this.SelectedRecordChanged.Invoke(this, null);
+                this.SelectedRecordChanged?.Invoke(this, null);
             }
         }
 

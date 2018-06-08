@@ -10,6 +10,16 @@ namespace Database.Repository
 {
     public abstract class BaseRepository<T> where T : BaseEntity
     {
+        public void Delete(T entity)
+        {
+            string sql = $"DELETE FROM {this.TableName} WHERE {this.TableName}Id = {entity.Id}";
+
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionString))
+            {
+                connection.Query<T>(sql);
+            }
+        }
+
         protected virtual List<T> ExecuteQuery(IDbConnection connection, string sql)
         {
             return connection.Query<T>(sql).ToList();
@@ -49,16 +59,6 @@ namespace Database.Repository
             }
         }
 
-        public void Delete(T entity)
-        {
-            string sql = $"DELETE FROM {this.TableName} WHERE {this.TableName}Id = {entity.Id}";
-
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionString))
-            {
-                connection.Query<T>(sql);
-            }
-        }
-
         public List<T> GetRecords(string where = "")
         {
             string sql = $"SELECT * FROM {this.TableName} {this.GetInnerJoinClauses()} {where}";
@@ -67,6 +67,17 @@ namespace Database.Repository
             {
                 var records = this.ExecuteQuery(connection, sql);
                 return records;
+            }
+        }
+
+        public int GetRecordsCount(string where = "")
+        {
+            string sql = $"SELECT COUNT(*) FROM {this.TableName} {where}";
+
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionString))
+            {
+                int count = connection.QuerySingle<int>(sql);
+                return count;
             }
         }
 

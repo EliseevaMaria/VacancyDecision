@@ -69,6 +69,10 @@
     <Compile Include="Tabs\VectorsTabViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{83315fa0-d428-48bf-8fc8-d29233490530}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{951f3a6b-71b3-4dfe-9293-ba6c58252734}</Project>
       <Name>Database</Name>

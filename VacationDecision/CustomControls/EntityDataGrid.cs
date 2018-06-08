@@ -50,8 +50,9 @@ namespace VacationDecision.CustomControls
             {
                 var selectedItemBinding = new Binding()
                 {
-                    Mode = BindingMode.OneWayToSource,
-                    Path = new PropertyPath("SelectedRecord")
+                    Mode = BindingMode.TwoWay,
+                    Path = new PropertyPath("SelectedRecord"),
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
                 };
                 this.SetBinding(DataGrid.SelectedItemProperty, selectedItemBinding);
             }

@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{448EE61B-263E-4110-9D99-F85E897813E6}</ProjectGuid>
+    <ProjectGuid>{83315FA0-D428-48BF-8FC8-D29233490530}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Model</RootNamespace>
-    <AssemblyName>Model</AssemblyName>
+    <RootNamespace>Business</RootNamespace>
+    <AssemblyName>Business</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,12 +24,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,20 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlternativeToCompare.cs" />
-    <Compile Include="CollectiveComparisonAlternativePair.cs" />
-    <Compile Include="Entity\Alternative.cs" />
-    <Compile Include="Entity\BaseEntity.cs" />
-    <Compile Include="Entity\BaseNamedEntity.cs" />
-    <Compile Include="Entity\Criterion.cs" />
-    <Compile Include="Entity\Expert.cs" />
-    <Compile Include="Entity\Result.cs" />
-    <Compile Include="Entity\Vector.cs" />
-    <Compile Include="Enumeration\CriterionScaleType.cs" />
-    <Compile Include="Enumeration\CriterionType.cs" />
-    <Compile Include="Enumeration\CritetionOptimalValue.cs" />
-    <Compile Include="Entity\Mark.cs" />
+    <Compile Include="BaseComparison.cs" />
+    <Compile Include="SimpsonComparison.cs" />
+    <Compile Include="CondorcetComparison.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{951F3A6B-71B3-4DFE-9293-BA6C58252734}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{448ee61b-263e-4110-9d99-f85e897813e6}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

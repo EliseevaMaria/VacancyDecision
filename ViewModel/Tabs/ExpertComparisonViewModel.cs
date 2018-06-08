@@ -15,9 +15,7 @@ namespace ViewModel.Tabs
 
         private AlternativeRepository alternativeRepository;
 
-        private List<AlternativeToCompare> alternatives = new List<AlternativeToCompare>();
-
-        private Alternative currentWinner;
+        private int currentComparisonPairIndex = -1;
 
         private List<Mark> marksForAlternative1;
 
@@ -61,12 +59,13 @@ namespace ViewModel.Tabs
             }
         }
 
-        public void ContinueComparison()
+        public List<CollectiveComparisonAlternativePair> AlternativePairs
         {
-            this.GetNextComparisonPair();
-            this.ComparisonStarted = true;
-            this.OnPropertyChanged(nameof(this.ContinueComparisonAvailable));
+            get;
+            private set;
         }
+
+        public bool CompareButtonVisible => !this.ComparisonStarted;
 
         private bool comparisonStarted;
         public bool ComparisonStarted
@@ -82,14 +81,22 @@ namespace ViewModel.Tabs
 
                 this.comparisonStarted = value;
                 this.OnPropertyChanged(nameof(this.ComparisonStarted));
+                this.OnPropertyChanged(nameof(this.CompareButtonVisible));
+
+                if (this.comparisonStarted == true)
+                    this.ComparisonStartedEvent?.Invoke(this, null);
             }
         }
+
+        public event EventHandler ComparisonStartedEvent;
 
         private Expert CurrentExpert
         {
             get;
             set;
         }
+
+        public string CurrentWinnerText => $"{this.CurrentExpert} has done all the choices";
 
         public ExpertComparisonViewModel(ViewService viewService, Expert expert)
         {
@@ -99,47 +106,21 @@ namespace ViewModel.Tabs
 
             this.CurrentExpert = expert;
 
+            this.AlternativePairs = new List<CollectiveComparisonAlternativePair>();
             this.RefreshAlternatives();
             this.ComparisonStarted = false;
-            this.OnPropertyChanged(nameof(this.ContinueComparisonAvailable));
         }
-
-        public bool ContinueComparisonAvailable => !this.ComparisonStarted
-            && this.currentWinner != null && this.alternatives.Any(alternative => !alternative.IsCompared);
-
-        public string CurrentWinnerText => $"The current winner for {this.CurrentExpert}: " + (this.currentWinner?.Name ?? "-");
 
         public void GetNextComparisonPair()
         {
-            var notCompared = this.alternatives.Where(alternatives => !alternatives.IsCompared).ToList();
-            if (notCompared.Count() == 0)
+            this.currentComparisonPairIndex++;
+            if (this.currentComparisonPairIndex < this.AlternativePairs.Count)
             {
-                if (this.currentWinner == null)
-                    this.InteractionService.ProvideService(ViewService.ServiceId.ShowWarningServiceId,
-                        "No alternatives to compare!");
-                else
-                    this.SetWinner();
-                return;
-            }
-
-            if (this.currentWinner != null)
-            {
-                this.Alternative1 = this.currentWinner;
-                this.Alternative2 = notCompared[0].Alternative;
-                notCompared[0].IsCompared = true;
+                this.Alternative1 = this.AlternativePairs[this.currentComparisonPairIndex].Alternative1;
+                this.Alternative2 = this.AlternativePairs[this.currentComparisonPairIndex].Alternative2;
             }
             else
-            {
-                if (notCompared.Count > 1)
-                {
-                    this.Alternative1 = notCompared[0].Alternative;
-                    notCompared[0].IsCompared = true;
-                    this.Alternative2 = notCompared[1].Alternative;
-                    notCompared[1].IsCompared = true;
-                }
-                else
-                    this.SetWinner();
-            }
+                this.EndComparison();
         }
 
         public void MakeChoice(Alternative chosenAlternative)
@@ -147,9 +128,7 @@ namespace ViewModel.Tabs
             if (chosenAlternative == null)
                 return;
 
-            this.currentWinner = chosenAlternative;
-            this.OnPropertyChanged(nameof(CurrentWinnerText));
-
+            this.AlternativePairs[this.currentComparisonPairIndex].Winner = chosenAlternative;
             this.GetNextComparisonPair();
         }
 
@@ -187,46 +166,55 @@ namespace ViewModel.Tabs
 
         public void RefreshAlternatives()
         {
-            AlternativeToCompare[] alternativesToCompare = new AlternativeToCompare[this.alternatives.Count];
-            this.alternatives.CopyTo(alternativesToCompare);
-            this.alternatives.Clear();
-            var alternativeEntities = alternativesToCompare.Select(a => a.Alternative).ToList();
+            var alternativesList = this.alternativeRepository.GetRecords();
+            this.AlternativePairs.Clear();
 
-            var alternatives = alternativeRepository.GetRecords();
-            if (this.currentWinner != null && !alternatives.Any(a => a.Id == this.currentWinner.Id))
-            {
-                this.currentWinner = null;
-                this.OnPropertyChanged(nameof(this.CurrentWinnerText));
-            }
+            int diagonalIndex = 0;
+            for (int j = 0; j < alternativesList.Count; j++, diagonalIndex++)
+                for (int i = 0; i < diagonalIndex; i++) 
+                    this.AlternativePairs.Add(new CollectiveComparisonAlternativePair(alternativesList[i], alternativesList[j]));
 
-            alternatives.ForEach(alternative =>
-            {
-                int oldIndex = alternativeEntities.FindIndex(ae => ae.Id == alternative.Id);
-                bool compared = false;
-                if (oldIndex >= 0)
-                    compared = alternativesToCompare[oldIndex].IsCompared;
-
-                this.alternatives.Add(new AlternativeToCompare(alternative, compared));
-            });
+            this.currentComparisonPairIndex = -1;
 
             this.ComparisonStarted = false;
-            this.OnPropertyChanged(nameof(this.ContinueComparisonAvailable));
+            this.ChoiceIsMade = false;
         }
 
-        private void SetWinner()
+        private void EndComparison()
         {
             this.InteractionService.ProvideService(ViewService.ServiceId.ShowInformationServiceId,
-                $"The winner is '{this.currentWinner.Name}'!");
+                $"All choices for {this.CurrentExpert} are done!");
             this.ComparisonStarted = false;
+            this.ChoiceIsMade = true;
+            this.ChoiceMade?.Invoke(this, null);
+        }
+
+        public event EventHandler ChoiceMade;
+
+        private bool choiceIsMade;
+        public bool ChoiceIsMade
+        {
+            get
+            {
+                return this.choiceIsMade;
+            }
+            set
+            {
+                if (this.choiceIsMade == value)
+                    return;
+
+                this.choiceIsMade = value;
+                this.OnPropertyChanged(nameof(this.ChoiceIsMade));
+            }
         }
 
         public void StartFromBeginning()
         {
-            this.currentWinner = null;
-            this.OnPropertyChanged(nameof(this.CurrentWinnerText));
+            this.currentComparisonPairIndex = -1;
 
-            this.alternatives.ForEach(a => a.IsCompared = false);
+            this.AlternativePairs.ForEach(pair => pair.Winner = null);
             this.GetNextComparisonPair();
+            this.ChoiceIsMade = false;
             this.ComparisonStarted = true;
         }
     }

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Databa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{ACB423F2-7127-4451-A78E-438BA07E6A72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{83315FA0-D428-48BF-8FC8-D29233490530}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{ACB423F2-7127-4451-A78E-438BA07E6A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACB423F2-7127-4451-A78E-438BA07E6A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACB423F2-7127-4451-A78E-438BA07E6A72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83315FA0-D428-48BF-8FC8-D29233490530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83315FA0-D428-48BF-8FC8-D29233490530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83315FA0-D428-48BF-8FC8-D29233490530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83315FA0-D428-48BF-8FC8-D29233490530}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

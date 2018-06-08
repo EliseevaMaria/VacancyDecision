@@ -8,9 +8,26 @@
     </UserControl.Resources>
 
     <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="15,5"/>
+                </Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Margin" Value="15,5"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Grid.Row="0" FontSize="12" FontWeight="Bold"
+                           Text="{Binding Path=WinnerByCondorcetText}" />
+            <TextBlock Grid.Row="0" FontSize="12" FontWeight="Bold"
+                           Text="{Binding Path=WinnerBySimpsonText}" />
+            <Button Content=" Refresh all " Click="Button_Click_1" />
+        </StackPanel>
         <customcontrols:EntityDataGrid x:Name="ExpertDataGrid" Height="100"
                                        DataContext="{Binding Path=ExpertGridControlViewModel}" />
-        <ScrollViewer Visibility="{Binding Path=ComparisonAvailable, Converter={StaticResource boolToVisible}, Mode=OneWay}" Height="335">
+        <Grid Visibility="{Binding Path=ComparisonAvailable, Converter={StaticResource boolToVisible}, Mode=OneWay}" Height="310">
             <Grid DataContext="{Binding Path=SelectedExpertComparisonViewModel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -19,60 +36,50 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Margin="10" HorizontalAlignment="Center"
-                           FontSize="14" FontWeight="Bold"
+                <TextBlock Grid.Row="0" Margin="5" HorizontalAlignment="Center"
+                           Visibility="{Binding Path=ChoiceIsMade, Converter={StaticResource boolToVisible}, Mode=OneWay}"
+                           FontSize="12" FontWeight="Bold"
                            Text="{Binding Path=CurrentWinnerText}" />
-                <StackPanel Grid.Row="1" Visibility="{Binding Path=ContinueComparisonAvailable, Converter={StaticResource boolToVisible}, Mode=OneWay}">
-                    <TextBlock HorizontalAlignment="Center" Margin="5">
-                        There are some new alternatives to compare.
-                    </TextBlock>
-                    <TextBlock HorizontalAlignment="Center" Margin="5">
-                        Do you want to compare the new ones to the winner?
-                    </TextBlock>
-                    <Button Name="ContinueComparison" HorizontalAlignment="Center" Margin="5" Click="ContinueComparison_Click">
-                        Compare to the winner!
-                    </Button>
-                </StackPanel>
 
                 <Grid Grid.Row="2" Visibility="{Binding Path=ComparisonStarted, Converter={StaticResource boolToVisible}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Name="Alternative1" Grid.Column="0" Margin="10"
+                    <Button Name="Alternative1" Grid.Column="0" Margin="30 10"
                             Click="Alternative1_Click">
                         <StackPanel>
-                            <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13"
-                                       Text="{Binding Path=Alternative1.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="20" />
+                            <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="11"
+                                       Text="{Binding Path=Alternative1.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="10" />
                             <ItemsControl Grid.Row="1" ItemsSource="{Binding Path=MarksForAlternative1, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Width="Auto" Orientation="Vertical" Margin="5" HorizontalAlignment="Center">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0">
-                                                <TextBlock Text="{Binding Path=Criterion.Name}" />
-                                                <TextBlock Text=": " />
+                                                <TextBlock Text="{Binding Path=Criterion.Name}" FontSize="9" />
+                                                <TextBlock Text=": " FontSize="9" />
                                             </StackPanel>
-                                            <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Left" Margin="50,0,0,0" />
+                                            <TextBlock Text="{Binding Path=Name}" FontSize="9" HorizontalAlignment="Left" Margin="50,0,0,0" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </StackPanel>
                     </Button>
-                    <Button Name="Alternative2" Grid.Column="1" Margin="10"
+                    <Button Name="Alternative2" Grid.Column="1" Margin="30 10"
                             Click="Alternative2_Click">
                         <StackPanel>
-                            <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="13"
-                                       Text="{Binding Path=Alternative2.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="20" />
+                            <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="11"
+                                       Text="{Binding Path=Alternative2.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="10" />
                             <ItemsControl Grid.Row="1" ItemsSource="{Binding Path=MarksForAlternative2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Width="Auto" Orientation="Vertical" Margin="5" HorizontalAlignment="Center">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0">
-                                                <TextBlock Text="{Binding Path=Criterion.Name}" />
-                                                <TextBlock Text=": " />
+                                                <TextBlock Text="{Binding Path=Criterion.Name}" FontSize="9" />
+                                                <TextBlock Text=": " FontSize="9" />
                                             </StackPanel>
-                                            <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Left" Margin="50,0,0,0" />
+                                            <TextBlock Text="{Binding Path=Name}" FontSize="9" HorizontalAlignment="Left" Margin="50,0,0,0" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -81,8 +88,9 @@
                     </Button>
                 </Grid>
         
-                <Button Grid.Row="3" Margin="10" Padding="5" Content="Compare from the beginning" Click="Button_Click" />
+                <Button Grid.Row="3" Margin="10" Padding="5" Content="Compare from the beginning" Click="Button_Click"
+                        Visibility="{Binding Path=CompareButtonVisible, Converter={StaticResource boolToVisible}, Mode=OneWay}"/>
             </Grid>
-        </ScrollViewer>
+        </Grid>
     </StackPanel>
 </UserControl>
